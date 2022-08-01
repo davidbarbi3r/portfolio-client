@@ -1,8 +1,7 @@
 import { styled } from "@stitches/react";
 import { colorTheme } from "../styles/colorTheme";
-import { LanguageContext } from "../hooks/ThemeContext";
+import { LanguageContext } from "../hooks/Context";
 import { useContext } from "react";
-
 
 const StyledNav = styled("nav", {
   fontSize: "1rem",
@@ -19,14 +18,14 @@ const StyledMenu = styled("ul", {
 const StyledLink = styled("a", {
   textDecoration: "none",
   color: "inherit",
-  cursor:'pointer',
+  cursor: "pointer",
   "&:hover": {
     borderBottom: `1px solid inherit`,
   },
 });
 
 export default function Navbar() {
-  const {language} = useContext(LanguageContext)
+  const { language } = useContext(LanguageContext);
 
   return (
     <StyledNav>

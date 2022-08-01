@@ -9,14 +9,14 @@ import {
 } from "@radix-ui/colors";
 
 export const colorTheme = {
-    light: {
-      ...teal,
-      ...green,
-      ...sage,
-    },
-    dark: {
-      ...tealDark,
-      ...greenDark,
-      ...sageDark,
-    },
-  };
+  light: {
+    ...teal,
+    ...green,
+    ...sage,
+  },
+  dark: {
+    ...tealDark,
+    ...greenDark,
+    ...sageDark,
+  },
+};

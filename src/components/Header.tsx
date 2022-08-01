@@ -2,14 +2,16 @@ import { styled } from "@stitches/react";
 import Navbar from "./Navbar";
 import { green } from "@radix-ui/colors";
 import { ToggleThemeBtn } from "../modals/SwitchTheme";
-import { ThemeContext } from "../hooks/ThemeContext";
+import { ThemeContext } from "../hooks/Context";
 import { useContext } from "react";
 import { colorTheme } from "../styles/colorTheme";
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
 
-  const shadow = theme ? `0 1px 15px ${colorTheme.dark.green1}` : `0 1px 15px ${colorTheme.light.green1}`
+  const shadow = theme
+    ? `0 1px 15px ${colorTheme.dark.green1}`
+    : `0 1px 15px ${colorTheme.light.green1}`;
 
   const Container = styled("div", {
     display: "flex",
