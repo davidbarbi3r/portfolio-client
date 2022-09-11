@@ -5,8 +5,6 @@ interface IThemeContext {
   toggleTheme: () => void;
 }
 
-type TLanguage = "FR" | "EN";
-
 interface ILanguageContext {
   language: string;
   toggleLanguage: React.Dispatch<React.SetStateAction<string>>;

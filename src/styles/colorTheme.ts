@@ -1,4 +1,3 @@
-import { createTheme } from "@stitches/react";
 import {
   teal,
   green,

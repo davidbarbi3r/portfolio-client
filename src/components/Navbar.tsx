@@ -2,35 +2,39 @@ import { styled } from "@stitches/react";
 import { colorTheme } from "../styles/colorTheme";
 import { LanguageContext } from "../hooks/Context";
 import { useContext } from "react";
-
-const StyledNav = styled("nav", {
-  fontSize: "1rem",
-});
-
-const StyledMenu = styled("ul", {
-  listStyle: "none",
-  display: "flex",
-  "& li": {
-    padding: "0.5em",
-  },
-});
-
-const StyledLink = styled("a", {
-  textDecoration: "none",
-  color: "inherit",
-  cursor: "pointer",
-  "&:hover": {
-    borderBottom: `1px solid inherit`,
-  },
-});
+import { NavLink, useNavigate } from "react-router-dom";
+import { ThemeContext } from "../hooks/Context";
 
 export default function Navbar() {
   const { language } = useContext(LanguageContext);
-
+  const { theme } = useContext(ThemeContext);
+  const navigate = useNavigate()
+  
+  const StyledNav = styled("nav", {
+    fontSize: "1rem",
+  });
+  
+  const StyledMenu = styled("ul", {
+    listStyle: "none",
+    display: "flex",
+    "& li": {
+      padding: "0.5em",
+    },
+  });
+  
+  const StyledLink = styled("a", {
+    textDecoration: "none",
+    color: theme ? colorTheme.light.green3 : colorTheme.dark.green3,
+    cursor: "pointer",
+    "&:hover": {
+      borderBottom: `1px solid inherit`,
+    },
+  });
+  
   return (
     <StyledNav>
       <StyledMenu>
-        <li>
+        <li onClick={() => navigate("/")}>
           <StyledLink>{language === "FR" ? "Accueil" : "Home"}</StyledLink>
         </li>
         <li>
@@ -41,6 +45,11 @@ export default function Navbar() {
         </li>
         <li>
           <StyledLink>Contact</StyledLink>
+        </li>
+        <li>
+          <StyledLink onClick={() => navigate("/blog")}>
+                Blog 
+          </StyledLink>
         </li>
       </StyledMenu>
     </StyledNav>

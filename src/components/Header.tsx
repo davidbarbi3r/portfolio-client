@@ -9,10 +9,6 @@ import { colorTheme } from "../styles/colorTheme";
 export default function Header() {
   const { theme } = useContext(ThemeContext);
 
-  const shadow = theme
-    ? `0 1px 15px ${colorTheme.dark.green1}`
-    : `0 1px 15px ${colorTheme.light.green1}`;
-
   const Container = styled("div", {
     display: "flex",
     justifyContent: "space-around",

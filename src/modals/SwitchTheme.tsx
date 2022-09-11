@@ -34,7 +34,7 @@ const ToggleThemeBtn = () => {
       <StyledToggleBtn onClick={toggleTheme} key="1">
         {icon}
       </StyledToggleBtn>
-      <StyledToggleBtn onClick={() => toggleLanguage()} key="2">
+      <StyledToggleBtn onClick={toggleLanguage} key="2">
         {language === "FR" ? "EN" : "FR"}
       </StyledToggleBtn>
     </StyledToggleContainer>
