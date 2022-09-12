@@ -1,6 +1,5 @@
 import { styled } from "@stitches/react";
 import Navbar from "./Navbar";
-import { green } from "@radix-ui/colors";
 import { ToggleThemeBtn } from "../modals/SwitchTheme";
 import { ThemeContext } from "../hooks/Context";
 import { useContext } from "react";
@@ -17,15 +16,18 @@ export default function Header() {
   });
 
   const StyledHeader = styled("header", {
+    position: "fixed",
+    top: "0",
     width: "100%",
     display: "flex",
-    order: "0",
+    zIndex: "1",
     justifyContent: "space-around",
     backgroundColor: theme ? colorTheme.dark.green3 : colorTheme.light.green4,
     alignItems: "center",
     height: "5em",
     boxShadow: `0 1px 15px rgba(0,0,0,0.3)`,
     color: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+    borderBottom: "1px solid" 
   });
 
   const StyledTitle = styled("h1", {
@@ -40,9 +42,10 @@ export default function Header() {
         <Container>
           <StyledTitle>David Barbi3r</StyledTitle>
           <Navbar />
-          <ToggleThemeBtn></ToggleThemeBtn>
+          <ToggleThemeBtn/>
         </Container>
       </StyledHeader>
     </>
   );
 }
+

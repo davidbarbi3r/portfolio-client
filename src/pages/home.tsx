@@ -4,9 +4,10 @@ import About from "../components/About";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
 import Highlight from "../components/Highlight";
-import { IPageProps } from "../interfaces/page";
 import { initializeApp } from "firebase/app";
 import config from "../config/config";
+import Stack from "../components/Stack";
+import Socials from "../modals/Socials";
 
 initializeApp(config.firebase)
 
@@ -19,16 +20,18 @@ const StyledHome = styled("section", {
   alignItems: "center",
 });
 
-const Home: React.FunctionComponent<IPageProps> = props => {
+function Home () {
+  
   return (
     <div>
+      <Header />
+      <Socials/>
       <StyledHome>
-        <Header />
         <Highlight />
-        <h1>HOME PAGE</h1>
+        <Stack/>
       </StyledHome>
-        <About />
         <Projects />
+        <About />
         <Contact />
     </div>
   );
