@@ -1,7 +1,7 @@
-import { styled } from "@stitches/react";
+import { styled, keyframes } from "@stitches/react";
 import { colorTheme } from "../styles/colorTheme";
 import { LanguageContext } from "../hooks/Context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../hooks/Context";
 
@@ -9,9 +9,13 @@ export default function Navbar() {
   const { language } = useContext(LanguageContext);
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate()
-  
+   
   const StyledNav = styled("nav", {
     fontSize: "1rem",
+    "@media(max-width: 950px)": {
+      fontSize: "0.8rem",
+      display: 'none'
+    }
   });
   
   const StyledMenu = styled("ul", {
@@ -30,7 +34,7 @@ export default function Navbar() {
       borderBottom: `1px solid inherit`,
     },
   });
-  
+    
   return (
     <StyledNav>
       <StyledMenu>

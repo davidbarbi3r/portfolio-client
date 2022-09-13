@@ -1,21 +1,21 @@
 import {
-  teal,
   green,
   sage,
   greenDark,
-  tealDark,
   sageDark,
+  blackA,
+  whiteA
 } from "@radix-ui/colors";
 
 export const colorTheme = {
   light: {
-    ...teal,
     ...green,
     ...sage,
+    ...whiteA
   },
   dark: {
-    ...tealDark,
     ...greenDark,
     ...sageDark,
+    ...blackA
   },
 };

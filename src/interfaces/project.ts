@@ -8,6 +8,7 @@ export default interface IProject {
     featured: boolean,
     imgSmall: string,
     imgWide: string,
+    imgFeatured?: string,
     github: string,
     live: string,
     skills: string[]

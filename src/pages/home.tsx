@@ -18,6 +18,9 @@ const StyledHome = styled("section", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  "@media(max-width: 950px)": {
+    height: "130vh"
+  },
 });
 
 function Home () {

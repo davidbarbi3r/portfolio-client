@@ -24,12 +24,18 @@ export default function Highlight() {
     backgroundBlendMode: "luminosity",
     maxHeight: "70%",
     height: "70%",
-    zIndex: "-2"
+    zIndex: "-2",
+    "@media(max-width: 800px)": {
+      backgroundPositionX : "50%"
+    },
   });
 
   const StyledTitle = styled("h1", {
     color: theme ? colorTheme.light.green3 : colorTheme.dark.green3,
     fontSize: "2.5rem",
+    "@media(max-width: 800px)": {
+      fontSize: "2rem",
+    },
   });
 
   const StyledSubtitle = styled("h4", {
@@ -37,8 +43,13 @@ export default function Highlight() {
     color: theme ? colorTheme.light.green3 : colorTheme.dark.green3,
     fontSize: "1.2rem",
     display: "block",
+    maxWidth: "700px",
     textAlign: "center",
-    width: "700px",
+    "@media(max-width: 800px)": {
+      fontSize: "1rem",
+      maxWidth: "600px",
+      padding: "0 0.5em"
+    },
   });
 
   return (
@@ -56,7 +67,7 @@ export default function Highlight() {
           ? "based in Ajaccio, France. I'm currently looking for a job in web developement (front or backend) near Ajaccio or remote."
           : "basé à Ajaccio, à la recherche d'un poste en alternance en tant que developpeur (front ou backend) près d'Ajaccio ou en télétravail"}
       </StyledSubtitle>
-      <CallToActionBtn text="Contact" />
+      {/* <CallToActionBtn text="Contact" /> */}
     </StyledTwoSidesContainer>
   );
 }

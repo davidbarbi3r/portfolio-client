@@ -15,6 +15,7 @@ export default function Socials() {
     flexDirection: "column",
     "& i": {
         fontSize: "2rem",
+        mixBlendMode: "multiply",
         color: theme ? colorTheme.light.green1 : colorTheme.dark.green3,
         margin: "1em 0",
         cursor: "pointer",
@@ -27,7 +28,14 @@ export default function Socials() {
     "& a": {
         textDecoration: "none",
         
-    }
+    },
+    "@media(max-width: 800px)": {
+      "& i ": {
+        fontSize: "1.5rem",
+      },
+      right: "30px",
+      left: "unset"
+    },
   });
 
   return (

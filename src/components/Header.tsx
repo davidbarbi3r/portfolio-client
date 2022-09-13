@@ -1,12 +1,112 @@
-import { styled } from "@stitches/react";
+import { styled, keyframes } from "@stitches/react";
 import Navbar from "./Navbar";
 import { ToggleThemeBtn } from "../modals/SwitchTheme";
-import { ThemeContext } from "../hooks/Context";
-import { useContext } from "react";
+import { ThemeContext, LanguageContext } from "../hooks/Context";
+import { useContext, useState } from "react";
 import { colorTheme } from "../styles/colorTheme";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext)
+  const [menu, setMenu] = useState(false)
+  const navigate = useNavigate()
+
+  function toggleMenu (){
+      setMenu(prev => !prev)
+  }
+
+  const HeaderMenu = styled("nav", {
+    position: "fixed",
+    top: "0",
+    width: "100%",
+    marginTop: "4em",
+    paddingTop: "1em",
+    cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+    zIndex:"2",
+    "& li": {
+      borderBottom: "#063F3E solid 1px",
+      backdropFilter: "blur(5px)",
+      backgroundColor: "#c3ddd0a9",
+      fontSize: "1rem",
+      padding: "0.6em",
+      textAlign: "center",
+      color:"#063F3E",
+      fontWeight: "bold",
+      listStyleType: "none"
+    }
+  })            
+
+const StyledBurger = styled("div", {
+  width: "50px",
+  height: "30px",
+  display: "block",
+  marginLeft:"1em",
+  top: "-5px",
+  left: "20px",
+  position:"relative",
+  transform: "rotate(0deg)",
+  "@media(min-width: 950px)": {
+    display: "none"
+  },
+  "&:hover": {
+    cursor: "pointer",
+  }
+})
+
+const StyledBurgerTop = styled("div", {
+  position:"absolute",
+  top: "0",
+  width: "2px",
+  height: "25px",
+  margin: "0",
+  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+  transform: !menu ? "rotate(90deg)" : "rotate(45deg)",
+  display: !menu ? "block" : "none",
+})
+
+const rotateNeg = keyframes({
+  '0%': { transform: 'rotate(90deg)' },
+  '100%': { transform: 'rotate(-45deg)' },
+});
+
+const rotatePos = keyframes({
+'0%': { transform: 'rotate(90deg)' },
+'100%': { transform: 'rotate(45deg)' },
+});
+
+const StyledBurgerMid1 = styled("div", {
+  position:"absolute",
+  top: "8px",
+  width: "2px",
+  height: "25px",
+  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+  transform: !menu ? "rotate(90deg)" : "rotate(45deg)",
+  animation: menu ? `${rotatePos} 400ms` : ""
+})
+
+const StyledBurgerMid2 = styled("div", {
+  position:"absolute",
+  top: "8px",
+  width: "2px",
+  height: "25px",
+  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+  display: menu ? "block" : "none",
+  transform: !menu ? "rotate(90deg)" : "rotate(-45deg)",
+  animation: menu ? `${rotateNeg} 400ms` : ""
+})
+
+const StyledBurgerBot = styled("div", {
+  position:"absolute",
+  top: "16px",
+  width: "2px",
+  height: "25px",
+  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+  transform: !menu ? "rotate(90deg)" : "rotate(-45deg)",
+  display: !menu ? "block" : "none",
+})
 
   const Container = styled("div", {
     display: "flex",
@@ -14,6 +114,12 @@ export default function Header() {
     width: "75%",
     alignItems: "center",
   });
+
+  const Flex = styled("div", {
+    display:"flex",
+    alignItems: "center",
+    justifyContent: "center"
+  })
 
   const StyledHeader = styled("header", {
     position: "fixed",
@@ -34,6 +140,9 @@ export default function Header() {
     fontSize: "2rem",
     color: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
     cursor: "pointer",
+    "@media(max-width: 950px)": {
+      fontSize: "1.5rem",
+    }
   });
 
   return (
@@ -42,9 +151,37 @@ export default function Header() {
         <Container>
           <StyledTitle>David Barbi3r</StyledTitle>
           <Navbar />
-          <ToggleThemeBtn/>
+          <Flex>
+            <ToggleThemeBtn/>
+            <StyledBurger onClick={toggleMenu}>
+              <StyledBurgerTop></StyledBurgerTop>
+              <StyledBurgerMid1></StyledBurgerMid1>
+              <StyledBurgerMid2></StyledBurgerMid2>
+              <StyledBurgerBot></StyledBurgerBot>
+            </StyledBurger>
+          </Flex>
         </Container>
+       
       </StyledHeader>
+      {menu ? <HeaderMenu>
+        <li onClick={() => navigate("/")}>
+          <a>{language === "FR" ? "Accueil" : "Home"}</a>
+        </li>
+        <li>
+          <a>{language === "FR" ? "A propos" : "About"}</a>
+        </li>
+        <li>
+          <a>{language === "FR" ? "Projets" : "Projects"}</a>
+        </li>
+        <li>
+          <a>Contact</a>
+        </li>
+        <li>
+          <a onClick={() => navigate("/blog")}>
+                Blog 
+          </a>
+        </li>
+          </HeaderMenu> : ""}
     </>
   );
 }
