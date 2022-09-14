@@ -51,6 +51,8 @@ import Project from "./Project"
       justifyContent: "center",
       alignItems: "center",
       maxWidth: "1200px",
+      width: "100%",
+      margin: "0 1em",
       height: "60vh",
       border: "2px solid black",
       "&:hover, &:focus": {
