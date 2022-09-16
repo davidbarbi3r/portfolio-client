@@ -1,10 +1,9 @@
 import { styled } from "@stitches/react";
 import Header from "../components/Header";
 import Highlight from "../components/Highlight";
-import { IPageProps } from "../interfaces/page";
 import { getAuth, signOut } from "firebase/auth";
 
-const Blog: React.FunctionComponent<IPageProps> = props => {
+function Blog (){
 
   const auth = getAuth()
 

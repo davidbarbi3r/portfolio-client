@@ -128,7 +128,7 @@ const StyledBurgerBot = styled("div", {
     display: "flex",
     zIndex: "1",
     justifyContent: "space-around",
-    backgroundColor: theme ? colorTheme.dark.green3 : colorTheme.light.green4,
+    backgroundColor: theme ? colorTheme.dark.green3 : colorTheme.light.green3,
     alignItems: "center",
     height: "5em",
     boxShadow: `0 1px 15px rgba(0,0,0,0.3)`,
