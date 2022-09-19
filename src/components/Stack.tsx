@@ -8,21 +8,22 @@ function Stack() {
   const { language } = useContext(LanguageContext);
 
   const StyledStack = styled("section", {
-    backgroundColor: theme ? colorTheme.dark.green4 : colorTheme.light.green1,
     color: theme ? colorTheme.light.green3 : colorTheme.dark.green3,
     width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     height: "30%",
+    paddingBottom: "4em",
     "@media(max-width: 950px)": {
       height: "fit-content",
+      marginTop: "2em",
     },
   });
 
   const StackSection = styled("div", {
     display: "flex",
-    justifyContent: "left",
+    justifyContent: "center",
     "& i": {
       fontSize: "3rem",
       padding: "0.1em 0.3em",
@@ -60,6 +61,8 @@ function Stack() {
       width: "90%",
       padding: "1em",
       fontSize: "0.95rem",
+      alignItems: "center",
+      margin: "0"
     },
   });
 
@@ -68,19 +71,28 @@ function Stack() {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    textAlign: "right",
     padding: "0 1em",
+    "& h1": {
+      width: "80%",
+      textAlign: "left"
+    },
+    "& p": {
+      width: "90%"
+    },
     "@media(max-width: 950px)": {
       width: "90%",
       padding: "0 1em",
       fontSize: "0.95rem",
+      textAlign: "center",
     },
   });
 
   const MainContainer = styled("div", {
-    maxWidth: "1000px",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    width: "80%",
+    justifyContent: "space-around",
     "@media(max-width: 950px)": {
       flexDirection: "column",
     },
