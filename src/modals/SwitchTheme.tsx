@@ -31,10 +31,10 @@ const ToggleThemeBtn = () => {
 
   return (
     <StyledToggleContainer>
-      <StyledToggleBtn onClick={toggleTheme} key="1">
+      <StyledToggleBtn onClick={toggleTheme}>
         {icon}
       </StyledToggleBtn>
-      <StyledToggleBtn onClick={toggleLanguage} key="2">
+      <StyledToggleBtn onClick={toggleLanguage}>
         {language === "FR" ? "EN" : "FR"}
       </StyledToggleBtn>
     </StyledToggleContainer>

@@ -94,7 +94,7 @@ export default function Contact({contactRef}: IProps) {
     },
   });
 
-  const handleSubmit = (e: React.FormEvent & { target: HTMLFormElement }) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     setLoading(true);
 

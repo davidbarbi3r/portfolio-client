@@ -7,7 +7,7 @@ interface IThemeContext {
 
 interface ILanguageContext {
   language: string;
-  toggleLanguage: React.Dispatch<React.SetStateAction<string>>;
+  toggleLanguage: () => void;
 }
 
 type ContextProviderProps = {
@@ -20,7 +20,7 @@ const LanguageContext = createContext<ILanguageContext>({} as ILanguageContext);
 const ThemeContextProvider = (props: ContextProviderProps) => {
   const [theme, setTheme] = useState(true);
 
-  function toggleTheme() {
+  function toggleTheme(): void {
     setTheme((prev) => !prev);
     console.log(theme);
   }
@@ -35,7 +35,7 @@ const ThemeContextProvider = (props: ContextProviderProps) => {
 const LanguageContextProvider = (props: ContextProviderProps) => {
   const [language, setLanguage] = useState("FR");
 
-  function toggleLanguage() {
+  function toggleLanguage(): void {
     setLanguage((prev) => (prev === "FR" ? "EN" : "FR"));
   }
 
