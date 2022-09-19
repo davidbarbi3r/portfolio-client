@@ -3,20 +3,43 @@ import React, { useState, useRef, useContext } from "react";
 import { ThemeContext, LanguageContext } from "../hooks/Context";
 import { colorTheme } from "../styles/colorTheme";
 import emailjs from "@emailjs/browser";
+import lwaves from "../assets/lwaves_light.svg";
+import lwavesDark from "../assets/lwaves_dark.svg";
 
-export default function Contact() {
+interface IProps {
+  contactRef: any
+}
+
+export default function Contact({contactRef}: IProps) {
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
   const [loading, setLoading] = useState(false);
   const formData = useRef<HTMLFormElement>(null);
 
   const StyledContact = styled("section", {
-    height: "100vh",
+    backgroundImage: theme ? `url(${lwavesDark})` : `url(${lwaves})`,
+    backgroundPositionY: "60%",
     backgroundColor: theme ? colorTheme.dark.green2 : colorTheme.light.green1,
     position: "relative",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    padding: "2em 0em 2em 0em",
+    "& p": {
+      color: theme ? colorTheme.light.green2 : colorTheme.dark.green2,
+      maxWidth: "800px",
+      marginBottom: "2em",
+      width: "80%",
+    },
+    "& section": {
+      color: theme ? colorTheme.light.green2 : colorTheme.dark.green2,
+      display: "flex",
+      justifyContent: "end",
+      "& h4": {
+        marginBottom: "0",
+        marginTop: "2em"
+      }
+    },
   });
 
   const StyledTitle = styled("h1", {
@@ -29,37 +52,49 @@ export default function Contact() {
 
   const StyledForm = styled("div", {
     backgroundColor: theme ? colorTheme.dark.green5 : colorTheme.light.green5,
-    padding: "1.5em 2em", 
+    padding: "1.5em 2em",
+    marginBottom: "4em",
     borderRadius: "5px",
     fontFamily: "inherit",
     width: "70%",
+    maxWidth: "800px",
     "& input[type=submit]": {
-      cursor:"pointer",
+      cursor: "pointer",
       backgroundColor: theme ? colorTheme.dark.green9 : colorTheme.light.green9,
       padding: "0.5em 1.5em",
       borderRadius: "5px",
       color: "white",
       "&:hover": {
-        backgroundColor: theme ? colorTheme.dark.green10 : colorTheme.light.green10,
+        backgroundColor: theme
+          ? colorTheme.dark.green10
+          : colorTheme.light.green10,
       },
-     },
+    },
     "& input": {
       marginBottom: "16px",
       padding: "0.5em 1em",
       borderRadius: "5px",
-    }, 
+      width: "40%",
+      outline: "none",
+    },
     "& textarea": {
       margin: "16px 0",
       padding: "0.5em 1em",
       borderRadius: "5px",
       outline: "none",
-      border: "1px solid transparent"
-    }
-  })
+      border: "1px solid transparent",
+      width: "80%",
+    },
+    "& select": {
+      borderRadius: "5px",
+      padding: "0.5em 1em",
+      outline: "none",
+      border: "1px solid transparent",
+      width: "fit-content",
+    },
+  });
 
-  const handleSubmit = (
-    e: React.SyntheticEvent & { target: HTMLFormElement }
-  ) => {
+  const handleSubmit = (e: React.FormEvent & { target: HTMLFormElement }) => {
     e.preventDefault();
     setLoading(true);
 
@@ -85,8 +120,13 @@ export default function Contact() {
   };
 
   return (
-    <StyledContact>
+    <StyledContact ref={contactRef}>
       <StyledTitle>Contact</StyledTitle>
+      <p>
+        {language === "EN"
+          ? "Don't be shy, let me a message, no matter the reason I'm open minded & I love sharing ideas. This form send me directly an Email."
+          : "N'hésite pas à me laisser un message, peu importe la raison de celui-ci j'adore échanger. Alors à toi possible employeur, ami ou futur ami, aventurier de passage, stalker de portfolio je t'écoute. Ce formulaire m'envoie directement un mail."}
+      </p>
       <StyledForm>
         <form
           method="post"
@@ -145,6 +185,9 @@ export default function Contact() {
           </div>
         </form>
       </StyledForm>
+      <section>
+        <h4>{language === "EN" ? "Made with 🤍 by Gnark" : "Fait avec 🖤 par Gnark"}</h4>
+      </section>
     </StyledContact>
   );
 }
