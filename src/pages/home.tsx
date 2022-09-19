@@ -5,11 +5,11 @@ import About from "../components/About";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
 import Highlight from "../components/Highlight";
-import { initializeApp } from "firebase/app";
-import config from "../config/config";
+// import { initializeApp } from "firebase/app";
+// import config from "../config/config";
 import Socials from "../modals/Socials";
 
-initializeApp(config.firebase);
+// initializeApp(config.firebase);
 
 const StyledHome = styled("section", {
   height: "95vh",
