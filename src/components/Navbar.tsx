@@ -1,11 +1,19 @@
-import { styled, keyframes } from "@stitches/react";
+import { styled } from "@stitches/react";
 import { colorTheme } from "../styles/colorTheme";
 import { LanguageContext } from "../hooks/Context";
-import { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../hooks/Context";
 
-export default function Navbar() {
+interface IProps {
+  scroll: (ref: any) => void
+  homeRef: any
+  aboutRef: any
+  contactRef: any
+  projectRef: any
+}
+
+export default function Navbar({scroll, homeRef, aboutRef, contactRef, projectRef}: IProps) {
   const { language } = useContext(LanguageContext);
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate()
@@ -38,23 +46,23 @@ export default function Navbar() {
   return (
     <StyledNav>
       <StyledMenu>
-        <li onClick={() => navigate("/")}>
+        <li onClick={() => scroll(homeRef)}>
           <StyledLink>{language === "FR" ? "Accueil" : "Home"}</StyledLink>
         </li>
-        <li>
+        <li onClick={() => scroll(aboutRef)}>
           <StyledLink>{language === "FR" ? "A propos" : "About"}</StyledLink>
         </li>
-        <li>
+        <li onClick={() => scroll(projectRef)}>
           <StyledLink>{language === "FR" ? "Projets" : "Projects"}</StyledLink>
         </li>
-        <li>
+        <li onClick={() => scroll(contactRef)}>
           <StyledLink>Contact</StyledLink>
         </li>
-        <li>
+        {/* <li>
           <StyledLink onClick={() => navigate("/blog")}>
                 Blog 
           </StyledLink>
-        </li>
+        </li> */}
       </StyledMenu>
     </StyledNav>
   );

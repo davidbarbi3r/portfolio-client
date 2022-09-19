@@ -6,9 +6,11 @@ import { ProjectsArray } from "../data/Projects";
 import upForest from "../assets/upForest.jpg"
 import Project from "./Project"
 
-
+interface IProps {
+  projectRef: any
+}
  
-  export default function Projects() {
+  export default function Projects({projectRef}: IProps) {
 
     const {theme} = useContext(ThemeContext)
     const {language} = useContext(LanguageContext)
@@ -71,12 +73,15 @@ import Project from "./Project"
         width: "100%",
         margin: "1em 1em",
         height: "300px",
+        "&:h1": {
+          color: colorTheme.dark.green12
+        }
       },
       "@media(max-width: 632px)": {
         maxWidth: "300px",
         width: "100%",
         margin: "1em 0.5em",
-        height: "300px"
+        height: "300px",
       },
     })
 
@@ -92,6 +97,12 @@ import Project from "./Project"
       "@media(max-width: 950px)": {
         margin: "6em 1em",
         maxWidth: "700px",
+        backgroundColor: "unset",
+        padding: "0"
+      },
+      "@media(max-width: 1150px)": {
+        margin: "6em 1em",
+        maxWidth: "900px",
         backgroundColor: "unset",
         padding: "0"
       },
@@ -138,7 +149,7 @@ import Project from "./Project"
     )
   
     return (
-      <StyledProject>
+      <StyledProject ref={projectRef}>
         <StyledProjectContainer>
           <StyledTitle>{language === 'EN' ? "Projects" : "Projets"}</StyledTitle>
           <FeaturedProject onClick={() => toggleProject(featured.id)}/>

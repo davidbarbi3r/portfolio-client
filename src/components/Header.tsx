@@ -6,14 +6,28 @@ import { useContext, useState } from "react";
 import { colorTheme } from "../styles/colorTheme";
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {
-  const { theme } = useContext(ThemeContext);
-  const { language } = useContext(LanguageContext)
-  const [menu, setMenu] = useState(false)
-  const navigate = useNavigate()
+interface IProps {
+  scroll: (ref: any) => void;
+  homeRef: any;
+  aboutRef: any;
+  contactRef: any;
+  projectRef: any;
+}
 
-  function toggleMenu (){
-      setMenu(prev => !prev)
+export default function Header({
+  scroll,
+  homeRef,
+  aboutRef,
+  contactRef,
+  projectRef,
+}: IProps) {
+  const { theme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
+  const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
+
+  function toggleMenu() {
+    setMenu((prev) => !prev);
   }
 
   const HeaderMenu = styled("nav", {
@@ -25,7 +39,7 @@ export default function Header() {
     cursor: "pointer",
     display: "flex",
     flexDirection: "column",
-    zIndex:"2",
+    zIndex: "2",
     "& li": {
       borderBottom: "#063F3E solid 1px",
       backdropFilter: "blur(5px)",
@@ -33,80 +47,80 @@ export default function Header() {
       fontSize: "1rem",
       padding: "0.6em",
       textAlign: "center",
-      color:"#063F3E",
+      color: "#063F3E",
       fontWeight: "bold",
-      listStyleType: "none"
-    }
-  })            
+      listStyleType: "none",
+    },
+  });
 
-const StyledBurger = styled("div", {
-  width: "50px",
-  height: "30px",
-  display: "block",
-  marginLeft:"1em",
-  top: "-5px",
-  left: "20px",
-  position:"relative",
-  transform: "rotate(0deg)",
-  "@media(min-width: 950px)": {
-    display: "none"
-  },
-  "&:hover": {
-    cursor: "pointer",
-  }
-})
+  const StyledBurger = styled("div", {
+    width: "50px",
+    height: "30px",
+    display: "block",
+    marginLeft: "1em",
+    top: "-5px",
+    left: "20px",
+    position: "relative",
+    transform: "rotate(0deg)",
+    "@media(min-width: 950px)": {
+      display: "none",
+    },
+    "&:hover": {
+      cursor: "pointer",
+    },
+  });
 
-const StyledBurgerTop = styled("div", {
-  position:"absolute",
-  top: "0",
-  width: "2px",
-  height: "25px",
-  margin: "0",
-  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
-  transform: !menu ? "rotate(90deg)" : "rotate(45deg)",
-  display: !menu ? "block" : "none",
-})
+  const StyledBurgerTop = styled("div", {
+    position: "absolute",
+    top: "0",
+    width: "2px",
+    height: "25px",
+    margin: "0",
+    backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+    transform: !menu ? "rotate(90deg)" : "rotate(45deg)",
+    display: !menu ? "block" : "none",
+  });
 
-const rotateNeg = keyframes({
-  '0%': { transform: 'rotate(90deg)' },
-  '100%': { transform: 'rotate(-45deg)' },
-});
+  const rotateNeg = keyframes({
+    "0%": { transform: "rotate(90deg)" },
+    "100%": { transform: "rotate(-45deg)" },
+  });
 
-const rotatePos = keyframes({
-'0%': { transform: 'rotate(90deg)' },
-'100%': { transform: 'rotate(45deg)' },
-});
+  const rotatePos = keyframes({
+    "0%": { transform: "rotate(90deg)" },
+    "100%": { transform: "rotate(45deg)" },
+  });
 
-const StyledBurgerMid1 = styled("div", {
-  position:"absolute",
-  top: "8px",
-  width: "2px",
-  height: "25px",
-  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
-  transform: !menu ? "rotate(90deg)" : "rotate(45deg)",
-  animation: menu ? `${rotatePos} 400ms` : ""
-})
+  const StyledBurgerMid1 = styled("div", {
+    position: "absolute",
+    top: "8px",
+    width: "2px",
+    height: "25px",
+    backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+    transform: !menu ? "rotate(90deg)" : "rotate(45deg)",
+    animation: menu ? `${rotatePos} 400ms` : "",
+  });
 
-const StyledBurgerMid2 = styled("div", {
-  position:"absolute",
-  top: "8px",
-  width: "2px",
-  height: "25px",
-  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
-  display: menu ? "block" : "none",
-  transform: !menu ? "rotate(90deg)" : "rotate(-45deg)",
-  animation: menu ? `${rotateNeg} 400ms` : ""
-})
+  const StyledBurgerMid2 = styled("div", {
+    position: "absolute",
+    top: "8px",
+    width: "2px",
+    height: "25px",
+    backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+    display: menu ? "block" : "none",
+    transform: !menu ? "rotate(90deg)" : "rotate(-45deg)",
+    animation: menu ? `${rotateNeg} 400ms` : "",
+  });
 
-const StyledBurgerBot = styled("div", {
-  position:"absolute",
-  top: "16px",
-  width: "2px",
-  height: "25px",
-  backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
-  transform: !menu ? "rotate(90deg)" : "rotate(-45deg)",
-  display: !menu ? "block" : "none",
-})
+  const StyledBurgerBot = styled("div", {
+    position: "absolute",
+    top: "16px",
+    width: "2px",
+    height: "25px",
+    backgroundColor: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
+    transform: !menu ? "rotate(90deg)" : "rotate(-45deg)",
+    display: !menu ? "block" : "none",
+  });
 
   const Container = styled("div", {
     display: "flex",
@@ -116,10 +130,10 @@ const StyledBurgerBot = styled("div", {
   });
 
   const Flex = styled("div", {
-    display:"flex",
+    display: "flex",
     alignItems: "center",
-    justifyContent: "center"
-  })
+    justifyContent: "center",
+  });
 
   const StyledHeader = styled("header", {
     position: "fixed",
@@ -133,7 +147,7 @@ const StyledBurgerBot = styled("div", {
     height: "5em",
     boxShadow: `0 1px 15px rgba(0,0,0,0.3)`,
     color: theme ? colorTheme.dark.green12 : colorTheme.light.green12,
-    borderBottom: "1px solid" 
+    borderBottom: "1px solid",
   });
 
   const StyledTitle = styled("h1", {
@@ -142,7 +156,7 @@ const StyledBurgerBot = styled("div", {
     cursor: "pointer",
     "@media(max-width: 950px)": {
       fontSize: "1.5rem",
-    }
+    },
   });
 
   return (
@@ -150,9 +164,15 @@ const StyledBurgerBot = styled("div", {
       <StyledHeader>
         <Container>
           <StyledTitle>David Barbi3r</StyledTitle>
-          <Navbar />
+          <Navbar
+            scroll={scroll}
+            homeRef={homeRef}
+            projectRef={projectRef}
+            aboutRef={aboutRef}
+            contactRef={contactRef}
+          />
           <Flex>
-            <ToggleThemeBtn/>
+            <ToggleThemeBtn />
             <StyledBurger onClick={toggleMenu}>
               <StyledBurgerTop></StyledBurgerTop>
               <StyledBurgerMid1></StyledBurgerMid1>
@@ -161,28 +181,28 @@ const StyledBurgerBot = styled("div", {
             </StyledBurger>
           </Flex>
         </Container>
-       
       </StyledHeader>
-      {menu ? <HeaderMenu>
-        <li onClick={() => navigate("/")}>
-          <a>{language === "FR" ? "Accueil" : "Home"}</a>
-        </li>
-        <li>
-          <a>{language === "FR" ? "A propos" : "About"}</a>
-        </li>
-        <li>
-          <a>{language === "FR" ? "Projets" : "Projects"}</a>
-        </li>
-        <li>
-          <a>Contact</a>
-        </li>
-        <li>
-          <a onClick={() => navigate("/blog")}>
-                Blog 
-          </a>
-        </li>
-          </HeaderMenu> : ""}
+      {menu ? (
+        <HeaderMenu>
+          <li onClick={() => scroll(homeRef)}>
+            <a>{language === "FR" ? "Accueil" : "Home"}</a>
+          </li>
+          <li onClick={() => scroll(aboutRef)}>
+            <a>{language === "FR" ? "A propos" : "About"}</a>
+          </li>
+          <li onClick={() => scroll(projectRef)}>
+            <a>{language === "FR" ? "Projets" : "Projects"}</a>
+          </li>
+          <li onClick={() => scroll(contactRef)}>
+            <a>Contact</a>
+          </li>
+          {/* <li>
+            <a onClick={() => navigate("/blog")}>Blog</a>
+          </li> */}
+        </HeaderMenu>
+      ) : (
+        ""
+      )}
     </>
   );
 }
-

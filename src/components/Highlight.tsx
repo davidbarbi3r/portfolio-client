@@ -22,8 +22,8 @@ export default function Highlight() {
     backgroundImage: `url(${forest})`,
     backgroundPositionY : theme ? "90%" : "20%",
     backgroundBlendMode: "luminosity",
-    maxHeight: "70%",
-    height: "70%",
+    maxHeight: "100%",
+    height: "100%",
     zIndex: "-2",
     "@media(max-width: 800px)": {
       backgroundPositionX : "50%"
@@ -60,12 +60,12 @@ export default function Highlight() {
       <StyledSubtitle>
         <strong>
           {language === "EN"
-            ? "I'm a Fullstack web developer"
-            : "Je suis un developpeur Fullstack"}
+            ? "I'm a passionate web developer"
+            : "Je suis un developpeur web passionné"}
         </strong>{" "}
         {language === "EN"
-          ? "based in Ajaccio, France. I'm currently looking for a job in web developement (front or backend) near Ajaccio or remote."
-          : "basé à Ajaccio, à la recherche d'un poste en alternance en tant que developpeur (front ou backend) près d'Ajaccio ou en télétravail"}
+          ? "based in Ajaccio, France. I'm availaible for any project / job in web developement (front or backend) near Ajaccio or remote."
+          : "basé à Ajaccio, je suis disponible pour tout projet ou travail en tant que developpeur web près d'Ajaccio ou en télétravail"}
       </StyledSubtitle>
       {/* <CallToActionBtn text="Contact" /> */}
     </StyledTwoSidesContainer>
