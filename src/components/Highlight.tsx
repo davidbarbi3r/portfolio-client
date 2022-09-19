@@ -28,6 +28,9 @@ export default function Highlight() {
     "@media(max-width: 800px)": {
       backgroundPositionX : "50%"
     },
+    "@media(min-width: 2000px)": {
+      backgroundSize: "cover"    
+    },
   });
 
   const StyledTitle = styled("h1", {
