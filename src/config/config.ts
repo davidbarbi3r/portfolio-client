@@ -1,7 +1,3 @@
-import dotenv from "dotenv"
-
-dotenv.config()
-
 interface IFirebase {
     apiKey: string;
     authDomain: string;
@@ -22,15 +18,15 @@ interface IConfig {
 
 const config:IConfig = {
     firebase: {
-        apiKey: process.env.FIRE_APIKEY || "",
-        authDomain: process.env.FIRE_AUTHDOMAIN || "",
+        apiKey: import.meta.env.VITE_FIRE_APIKEY || "",
+        authDomain: import.meta.env.VITE_FIRE_AUTHDOMAIN || "",
         projectId: "db-portfolio-c509f",
         storageBucket: "db-portfolio-c509f.appspot.com",
-        messagingSenderId: process.env.FIRE_SENDERID || "",
-        appId: process.env.FIRE_APPID || ""
+        messagingSenderId: import.meta.env.VITE_FIRE_SENDERID || "",
+        appId: import.meta.env.FIRE_APPID || ""
     }, 
     server: {
-        url: process.env.SERVER_URL || ""
+        url: import.meta.env.VITE_SERVER_URL || ""
     }
 }
 
