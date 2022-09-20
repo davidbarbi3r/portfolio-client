@@ -46,16 +46,16 @@ export default function Navbar({scroll, homeRef, aboutRef, contactRef, projectRe
   return (
     <StyledNav>
       <StyledMenu>
-        <li onClick={() => scroll(homeRef)}>
+        <li onClick={() => homeRef ? scroll(homeRef): navigate("/")}>
           <StyledLink>{language === "FR" ? "Accueil" : "Home"}</StyledLink>
         </li>
-        <li onClick={() => scroll(aboutRef)}>
+        <li onClick={() => aboutRef ? scroll(aboutRef) : navigate("/")}>
           <StyledLink>{language === "FR" ? "A propos" : "About"}</StyledLink>
         </li>
-        <li onClick={() => scroll(projectRef)}>
+        <li onClick={() => projectRef ? scroll(projectRef) : navigate("/")}>
           <StyledLink>{language === "FR" ? "Projets" : "Projects"}</StyledLink>
         </li>
-        <li onClick={() => scroll(contactRef)}>
+        <li onClick={() => contactRef ? scroll(contactRef) : navigate("/")}>
           <StyledLink>Contact</StyledLink>
         </li>
         <li>

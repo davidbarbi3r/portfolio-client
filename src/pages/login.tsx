@@ -21,7 +21,7 @@ const Login: React.FunctionComponent<ILoginProps> = props => {
     signInWithPopup(auth, new GoogleAuthProvider())
     .then(response => {
       console.log(response.user.uid, response.user.displayName)
-      navigate("/blog")
+      navigate("/edit")
     })
     .catch((error) => {
       console.log(error)

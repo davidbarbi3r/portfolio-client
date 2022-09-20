@@ -18,13 +18,14 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
-              path="/blog"
+              path="/edit"
               element={
                 <AuthRoute>
-                  <Blog />
+                  <Edit />
                 </AuthRoute>
               }
             />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:blogID" element={<Blog />} />
             <Route path="/edit" element={<Edit />} />
             <Route path="/edit/:blogID" element={<Edit />} />

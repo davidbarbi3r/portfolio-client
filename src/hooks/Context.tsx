@@ -5,6 +5,11 @@ interface IThemeContext {
   toggleTheme: () => void;
 }
 
+interface IUserContext {
+  user: boolean;
+  toggleUser: () => void;
+}
+
 interface ILanguageContext {
   language: string;
   toggleLanguage: () => void;
@@ -16,6 +21,7 @@ type ContextProviderProps = {
 
 const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
 const LanguageContext = createContext<ILanguageContext>({} as ILanguageContext);
+const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const ThemeContextProvider = (props: ContextProviderProps) => {
   const [theme, setTheme] = useState(true);
@@ -46,9 +52,25 @@ const LanguageContextProvider = (props: ContextProviderProps) => {
   );
 };
 
+const UserContextProvider = (props: ContextProviderProps) => {
+  const [user, setUser] = useState(false);
+
+  function toggleUser(): void {
+    setUser((prev) => !prev);
+  }
+  
+  return (
+    <UserContext.Provider value={{ user, toggleUser }}>
+      {props.children}
+    </UserContext.Provider>
+  );
+};
+
 export {
   ThemeContextProvider,
   ThemeContext,
   LanguageContextProvider,
   LanguageContext,
+  UserContextProvider,
+  UserContext,
 };

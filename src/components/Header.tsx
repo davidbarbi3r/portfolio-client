@@ -184,21 +184,21 @@ export default function Header({
       </StyledHeader>
       {menu ? (
         <HeaderMenu>
-          <li onClick={() => scroll(homeRef)}>
+          <li onClick={() => homeRef ? scroll(homeRef): navigate("/")}>
             <a>{language === "FR" ? "Accueil" : "Home"}</a>
           </li>
-          <li onClick={() => scroll(aboutRef)}>
+          <li onClick={() => aboutRef ? scroll(aboutRef) : navigate("/")}>
             <a>{language === "FR" ? "A propos" : "About"}</a>
           </li>
-          <li onClick={() => scroll(projectRef)}>
+          <li onClick={() => projectRef ? scroll(projectRef) : navigate("/")}>
             <a>{language === "FR" ? "Projets" : "Projects"}</a>
           </li>
-          <li onClick={() => scroll(contactRef)}>
+          <li onClick={() => contactRef ? scroll(contactRef) : navigate("/")}>
             <a>Contact</a>
           </li>
-          {/* <li>
+          <li>
             <a onClick={() => navigate("/blog")}>Blog</a>
-          </li> */}
+          </li>
         </HeaderMenu>
       ) : (
         ""
