@@ -97,7 +97,7 @@ export default function About({aboutRef}: IProps) {
           <p>
             {language === "EN"
               ? "Tech passionate, I decided to retrain into web developpement & blockchain fall 2021. I've worked for 9 years in Financial Audit & Accountancy. Since then I'm 100% dedicated to learning & working on projects to be at my best. "
-              : "Passionné de tech, j'ai décidé de me reconvertir dans le developement web & blockchain fin 2021 après avoir travaillé 9 ans dans le domaine de l'Audit / Comptabilité. Depuis j'ai à coeur d'apprendre tous les jours afin de donner le meilleur de moi même pour développer toutes sortes de projets."}
+              : "Passionné de tech, j'ai décidé de me reconvertir dans le développement web & blockchain fin 2021 après avoir travaillé 9 ans dans le domaine de l'Audit / Comptabilité. Depuis j'ai à coeur d'apprendre tous les jours afin de donner le meilleur de moi même pour développer toutes sortes de projets."}
           </p>
         </LeftContainer>
         <RightContainer>
