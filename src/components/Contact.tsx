@@ -1,5 +1,5 @@
 import { styled } from "@stitches/react";
-import React, { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext } from "react";
 import { ThemeContext, LanguageContext } from "../hooks/Context";
 import { colorTheme } from "../styles/colorTheme";
 import emailjs from "@emailjs/browser";
