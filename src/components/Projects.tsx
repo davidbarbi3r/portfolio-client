@@ -20,7 +20,6 @@ interface IProps {
     const toggleProject = (projectId: number) => {
         setProjectSelected(ProjectsArray.filter((item) => item.id === projectId)[0])
         setDisplayProject((prev) => !prev)
-        // setDisplayProject(true)
     }
 
     const StyledProject = styled("section", {

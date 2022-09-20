@@ -1,5 +1,5 @@
 import { styled } from "@stitches/react";
-// import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { LanguageContext, ThemeContext } from "../hooks/Context";
@@ -12,22 +12,22 @@ export interface ILoginProps{}
 const Login: React.FunctionComponent<ILoginProps> = props => {
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
-  // const auth = getAuth()
+  const auth = getAuth()
   const navigate = useNavigate()
   const [authing, setAuthing] = useState(false)
 
-  // const signInWithGoogle = async () => {
-  //   setAuthing(true)
-  //   signInWithPopup(auth, new GoogleAuthProvider())
-  //   .then(response => {
-  //     console.log(response.user.uid, response.user.displayName)
-  //     navigate("/blog")
-  //   })
-  //   .catch((error) => {
-  //     console.log(error)
-  //     setAuthing(false)
-  //   })
-  // }
+  const signInWithGoogle = async () => {
+    setAuthing(true)
+    signInWithPopup(auth, new GoogleAuthProvider())
+    .then(response => {
+      console.log(response.user.uid, response.user.displayName)
+      navigate("/blog")
+    })
+    .catch((error) => {
+      console.log(error)
+      setAuthing(false)
+    })
+  }
 
   const LoginContainer = styled("section", {
     height: "100vh",
@@ -78,7 +78,7 @@ const Login: React.FunctionComponent<ILoginProps> = props => {
       <StyledSignIn>
         <ToggleThemeBtn></ToggleThemeBtn>
         <h1>{language === "FR" ? "Connecte toi :)" : "Hey it seems youre not connected, please Login"}</h1>
-        {/* <StyledGoogleButton onClick={()=> signInWithGoogle()} disabled={authing}>Google</StyledGoogleButton> */}
+        <StyledGoogleButton onClick={()=> signInWithGoogle()} disabled={authing}>Google</StyledGoogleButton>
         <StyledButton onClick={() => navigate("/")}>{language === "EN" ? "Bring me back home":"Ramène moi à l'accueil"}</StyledButton>
       </StyledSignIn>
       <StyledBackground></StyledBackground>
