@@ -18,7 +18,7 @@ export const ProjectsArray: IProject[] = [
         id: 1,
         name: "Meh Fight",
         descriptionEN: "This App is a one page Deck-building card-game. Chose your hero & fight the enemies!",
-        descriptionFR: "Cette application est un jeu de deck-building en onepage. Le but du jeu ? Tuer tous les ennemies!",
+        descriptionFR: "Cette application est un jeu de deck-building en onepage. Le but du jeu ? Tuer tous les ennemis!",
         featured: true,
         dateStarted: "06/22",
         stack: ["TypeScript", "React"],
