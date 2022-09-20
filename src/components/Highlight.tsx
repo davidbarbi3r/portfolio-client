@@ -55,6 +55,7 @@ export default function Highlight() {
     },
   });
 
+  console.log(import.meta.env.VITE_FIRE_SENDERID)
   return (
     <StyledTwoSidesContainer>
       <StyledTitle>
