@@ -58,11 +58,11 @@ export default function Navbar({scroll, homeRef, aboutRef, contactRef, projectRe
         <li onClick={() => scroll(contactRef)}>
           <StyledLink>Contact</StyledLink>
         </li>
-        {/* <li>
+        <li>
           <StyledLink onClick={() => navigate("/blog")}>
                 Blog 
           </StyledLink>
-        </li> */}
+        </li>
       </StyledMenu>
     </StyledNav>
   );
