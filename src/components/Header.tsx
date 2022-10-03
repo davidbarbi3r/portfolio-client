@@ -196,9 +196,9 @@ export default function Header({
           <li onClick={() => contactRef ? scroll(contactRef) : navigate("/")}>
             <a>Contact</a>
           </li>
-          <li>
+          {/* <li>
             <a onClick={() => navigate("/blog")}>Blog</a>
-          </li>
+          </li> */}
         </HeaderMenu>
       ) : (
         ""

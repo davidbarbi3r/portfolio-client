@@ -9,6 +9,7 @@ interface IFirebase {
 
 interface IServer {
     url: string
+    admin: string
 }
 
 interface IConfig {
@@ -26,7 +27,8 @@ const config:IConfig = {
         appId: import.meta.env.FIRE_APPID || ""
     }, 
     server: {
-        url: import.meta.env.VITE_SERVER_URL || ""
+        url: import.meta.env.VITE_SERVER_URL || "",
+        admin: import.meta.env.VITE_SERVER_ADMIN || "",
     }
 }
 

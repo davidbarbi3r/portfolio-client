@@ -104,7 +104,7 @@ export default function Contact({contactRef}: IProps) {
           "service_xzcn56q",
           "template_4l8cmsq",
           e.target,
-          "bZpx246MwZzC2EIaH"
+          import.meta.env.VITE_EMAILJS_KEY
         )
         .then(
           (result) => {

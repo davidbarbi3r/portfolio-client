@@ -1,33 +1,86 @@
 import { styled } from "@stitches/react";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import {Providers} from "../config/firebase";
+import {authenticate, signInWithSocialMedia} from "../modules/authServer"
 import { useNavigate } from "react-router";
 import { LanguageContext, ThemeContext } from "../hooks/Context";
 import { ToggleThemeBtn } from "../modals/SwitchTheme";
 import { colorTheme } from "../styles/colorTheme";
+import UserContext from "../hooks/userContext";
+import logging from "../config/logging";
+import ErrorText from "../components/ErrorText";
 
 export interface ILoginProps{}
-
 
 const Login: React.FunctionComponent<ILoginProps> = props => {
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
-  const auth = getAuth()
+  const userContext = useContext(UserContext)
+  const [authenticating, setAuthentication] = useState(false)
+  const [error, setError] = useState<string>('');
+  const isLogin = window.location.pathname.includes('login');
   const navigate = useNavigate()
-  const [authing, setAuthing] = useState(false)
+ 
+  const SignInWithGoogle = () => {
+    if (error) setError(error)
 
-  const signInWithGoogle = async () => {
-    setAuthing(true)
-    signInWithPopup(auth, new GoogleAuthProvider())
-    .then(response => {
-      console.log(response.user.uid, response.user.displayName)
-      navigate("/edit")
-    })
-    .catch((error) => {
-      console.log(error)
-      setAuthing(false)
-    })
+    setAuthentication(true)
+
+    signInWithSocialMedia(Providers.google)
+      .then (async (result) => {
+        logging.info(result)
+
+        let user = result.user
+
+        if (user) {
+          let uid = user.uid;
+          let name = user.displayName //will work because auth with google, if other provider we have to build more complex logic here
+        
+          if (name) {
+            try {
+              let fire_token = await user.getIdToken()
+
+              //auth with backend
+              authenticate(uid, name, fire_token, (error, _user) => {
+                if (error){
+                  setError(error)
+                  setAuthentication(false)
+                } else if (_user) {
+                  userContext.userDispatch({type: "login", payload: {user: _user, fire_token }})
+                  navigate("/")
+                }
+              })
+            }
+            catch(error) {
+              setError("Invalid token")
+              logging.error(error)
+              setAuthentication(false)
+            } 
+          } 
+          else {
+            setError("The identity provider doesn't have a name")
+            setAuthentication(false)
+          }
+        } 
+        else {
+          setError("The identity provider is mission a lot of the necessary information. Please try an other account.")
+          setAuthentication(false)
+        } 
+      })
+      .catch(error => {
+        setError(error.message)
+        setAuthentication(false)
+      })
   }
+
+
+  // // simple auth
+  // const signInWithGoogle = async () => {
+  //   await signInWithSocialMedia(Providers.google)
+  //     .then((result) => console.log(result))
+  //     .then(() => navigate("/edit"))
+  // }
 
   const LoginContainer = styled("section", {
     height: "100vh",
@@ -78,8 +131,9 @@ const Login: React.FunctionComponent<ILoginProps> = props => {
       <StyledSignIn>
         <ToggleThemeBtn></ToggleThemeBtn>
         <h1>{language === "FR" ? "Connecte toi :)" : "Hey it seems youre not connected, please Login"}</h1>
-        <StyledGoogleButton onClick={()=> signInWithGoogle()} disabled={authing}>Google</StyledGoogleButton>
-        <StyledButton onClick={() => navigate("/")}>{language === "EN" ? "Bring me back home":"Ramène moi à l'accueil"}</StyledButton>
+        <StyledGoogleButton onClick={()=> SignInWithGoogle()} disabled={authenticating}>Google</StyledGoogleButton>
+        <StyledButton onClick={() => navigate("/")} >{language === "EN" ? "Bring me back home":"Ramène moi à l'accueil"}</StyledButton>
+        <ErrorText error = {error}/>
       </StyledSignIn>
       <StyledBackground></StyledBackground>
     </LoginContainer>
