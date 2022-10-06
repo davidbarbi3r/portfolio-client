@@ -29,7 +29,6 @@ const Login: React.FunctionComponent<ILoginProps> = props => {
 
     signInWithSocialMedia(Providers.google)
       .then (async (result) => {
-        logging.info(result)
 
         let user = result.user
 

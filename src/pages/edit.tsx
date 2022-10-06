@@ -2,25 +2,31 @@ import { styled } from "@stitches/react";
 import MenuBar from "../components/Menubar";
 import StarterKit from "@tiptap/starter-kit";
 import { useEditor, EditorContent } from "@tiptap/react";
-import { useNavigate } from "react-router";
 import "../styles/editorStyle.scss"
 import IArticle from "../interfaces/article";
-import { getAuth } from "firebase/auth";
 import axios from "axios"
 import config from "../config/config";
 import { useContext } from "react";
 import UserContext from "../hooks/userContext";
 import logging from "../config/logging";
+import Header from "../components/Header";
 
 const Edit = () => {
-  const auth = getAuth()
-  const navigate = useNavigate();
   const editor = useEditor({
     extensions: [StarterKit],
     content: "<p>Hello World!</p>",
   });
   const userContext = useContext(UserContext)
   const {user} = userContext.userState
+
+  const StyledEdit = styled("div", {
+    width: "100%",
+    maxWidth:"1200px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "2em",
+    marginTop: "5em"
+  }) 
 
   function createArticle (html: string):IArticle{
     const article: IArticle = {
@@ -33,8 +39,7 @@ const Edit = () => {
   }
 
   function saveArticle(article: IArticle){
-    console.log(user)
-    console.log(article)
+    
     if (article.authorId === config.server.admin){
 
       axios.post(`${config.server.url}/posts/create`, article)
@@ -55,12 +60,19 @@ const Edit = () => {
 
   return (
     <>
-      <h2>EDIT PAGE</h2>
-      <h3>La page pour écrire et éditer des articles</h3>
-      <button onClick={() => navigate("/")}>Let's go home David</button>
-      <MenuBar editor={editor} />
-      <EditorContent editor={editor} />
-      <button onClick={() => saveArticle(createArticle(html? html : ""))}>Save article</button>
+      <Header
+        aboutRef={null}
+        contactRef={null}
+        homeRef={null}
+        projectRef={null}
+        scroll={() => {""}}/>
+      <StyledEdit>
+        <h2>EDIT PAGE</h2>
+        <h3>La page pour écrire et éditer des articles</h3>
+      </StyledEdit>
+        <MenuBar editor={editor}  />
+        <EditorContent editor={editor}autoFocus={true} style={{maxWidth: "1200px", margin: "1em auto", padding:"1em", border: "1px solid red"}}/>
+        <button onClick={() => saveArticle(createArticle(html? html : ""))}>Save article</button>
     </>
   );
 };
