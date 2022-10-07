@@ -90,16 +90,30 @@ export default function About({aboutRef}: IProps) {
       width: "90%",
     },
   });
-  const aboutleft = useRef(null)
+  const aboutLeftRef = useRef(null)
+  const aboutTitleRef = useRef(null) 
+  const imageRef = useRef(null)
 
   useEffect(() => {
-    const about = aboutleft.current
-    gsap.from(".about", {opacity: 0, duration: 1, scrollTrigger: ".about"})
+    const about = aboutLeftRef.current
+    const title = aboutTitleRef.current
     gsap.from(about, {x: -300, opacity: 0, duration: 1, scrollTrigger: {
       trigger: about,
       scrub: 1,
       start: "top bottom",
       end: "top center"
+    }}) 
+    gsap.from(title, {x: -300, opacity: 0, duration: 1, scrollTrigger: {
+      trigger: title,
+      scrub: 1,
+      start: "top bottom",
+      end: "top center"
+    }}) 
+    gsap.from(imageRef.current, {x: 800, scale: 0.5, duration: 1, scrollTrigger: {
+      trigger: imageRef.current,
+      scrub: 1,
+      start: "top bottom",
+      end: "center center"
     }}) 
   })
   
@@ -107,16 +121,16 @@ export default function About({aboutRef}: IProps) {
     <StyledAbout ref={aboutRef}>
       <StyledMainContainer>
         <LeftContainer>
-          <StyledTitle className="about">
+          <StyledTitle ref={aboutTitleRef}>
             {language === "EN" ? "About me" : "A propos"}
           </StyledTitle>
-          <p ref={aboutleft}>
+          <p ref={aboutLeftRef}>
             {language === "EN"
               ? "Tech passionate, I decided to retrain into web developpement & blockchain fall 2021. I've worked for 9 years in Financial Audit & Accountancy. Since then I'm 100% dedicated to learning & working on projects to be at my best. "
               : "Passionné de tech, j'ai décidé de me reconvertir dans le développement web & blockchain fin 2021 après avoir travaillé 9 ans dans le domaine de l'Audit / Comptabilité. Depuis j'ai à coeur d'apprendre tous les jours afin de donner le meilleur de moi même pour développer toutes sortes de projets."}
           </p>
         </LeftContainer>
-        <RightContainer>
+        <RightContainer ref={imageRef}>
           <img src={portrait} alt="my portrait"></img>
         </RightContainer>
       </StyledMainContainer>
