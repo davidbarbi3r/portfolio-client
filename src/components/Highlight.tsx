@@ -68,9 +68,9 @@ export default function Highlight() {
         trigger: container,
         start: "center center",
         end: "bottom 100px",
-        scrub: 1,
+        scrub: 1
       }})
-  }, [])
+  }, [theme, language])
 
 
   return (
