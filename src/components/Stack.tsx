@@ -1,11 +1,41 @@
 import { styled } from "@stitches/react";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ThemeContext, LanguageContext } from "../hooks/Context";
 import { colorTheme } from "../styles/colorTheme";
+import gsap from "gsap"
+import {ScrollTrigger} from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
+
 
 function Stack() {
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
+  const lang1 = useRef(null)
+  const lang2 = useRef(null)
+  const lang3 = useRef(null)
+
+  const framework1 = useRef(null)
+  const framework2 = useRef(null)
+
+  const tool1 = useRef(null)
+  const tool2 = useRef(null)
+  const tool3 = useRef(null)
+  const tool4 = useRef(null)
+
+  useEffect(() => {
+    const langs = [lang1.current, lang2.current, lang3.current]
+    const frameworks = [framework1.current, framework2.current]
+    const tools = [tool1.current, tool2.current, tool3.current, tool4.current]
+    const stack = [...langs, ...frameworks, ...tools]
+
+    gsap.fromTo(stack, {opacity: 0, x: 25, duration: 1}, {opacity: 1, x: 0, stagger: 0.25, scrollTrigger: {
+      trigger: ".stack",
+      scrub: 1,
+      start: "top 90%",
+      end: "top 60%"
+    }})
+  }, [])
 
   const StyledStack = styled("section", {
     color: theme ? colorTheme.light.green3 : colorTheme.dark.green3,
@@ -99,7 +129,7 @@ function Stack() {
   });
 
   return (
-    <StyledStack>
+    <StyledStack className="stack">
       <MainContainer>
         <StackLeftSection>
           <h1>{language === "EN" ? "My Stack" : "Ma Stack"}</h1>
@@ -116,21 +146,21 @@ function Stack() {
         <StackRightSection>
           <StackSection>
             <h2>{language === "EN" ? "Languages " : "Langages "}</h2>
-            <i className="devicon-javascript-plain"></i>
-            <i className="devicon-typescript-plain"></i>
-            <i className="devicon-nodejs-plain"></i>
+            <i ref={lang1} className="devicon-javascript-plain"></i>
+            <i ref={lang2} className="devicon-typescript-plain"></i>
+            <i ref={lang3} className="devicon-nodejs-plain"></i>
           </StackSection>
           <StackSection>
             <h2>Frameworks </h2>
-            <i className="devicon-react-original-wordmark"></i>
-            <i className="devicon-express-original-wordmark"></i>
+            <i ref={framework1} className="devicon-react-original-wordmark"></i>
+            <i ref={framework2} className="devicon-express-original-wordmark"></i>
           </StackSection>
           <StackSection>
             <h2>{language === "EN" ? "Tools " : "Outils "}</h2>
-            <i className="devicon-git-plain"></i>
-            <i className="devicon-mongodb-plain-wordmark"></i>
-            <i className="devicon-docker-plain-wordmark"></i>
-            <i className="devicon-vscode-plain"></i>
+            <i ref={tool1} className="devicon-git-plain"></i>
+            <i ref={tool2} className="devicon-mongodb-plain-wordmark"></i>
+            <i ref={tool3} className="devicon-docker-plain-wordmark"></i>
+            <i ref={tool4} className="devicon-vscode-plain"></i>
           </StackSection>
         </StackRightSection>
       </MainContainer>
