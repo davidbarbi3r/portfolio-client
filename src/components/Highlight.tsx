@@ -64,11 +64,11 @@ export default function Highlight() {
 
   useEffect(() => {
     const container = containerRef.current
-    gsap.to(container, {duration: 1, backgroundPositionY: -50, scrollTrigger: {
-        trigger: ".title",
+    gsap.to(container, {duration: 1, y: 150, scrollTrigger: {
+        trigger: container,
         start: "center center",
         end: "bottom 100px",
-        scrub: true,
+        scrub: 1,
       }})
   }, [])
 
