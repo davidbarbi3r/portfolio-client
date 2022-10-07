@@ -7,14 +7,13 @@ import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 
 
-gsap.registerPlugin(ScrollTrigger)
 
 
 export default function Highlight() {
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
-  const titleRef = useRef(null)
   const containerRef = useRef(null)
+  gsap.registerPlugin(ScrollTrigger)
 
   const StyledTwoSidesContainer = styled("div", {
     position: "relative", 
@@ -63,19 +62,18 @@ export default function Highlight() {
   });
 
   useEffect(() => {
-    const container = containerRef.current
-    gsap.to(container, {duration: 1, y: 150, scrollTrigger: {
-        trigger: container,
+    gsap.to(containerRef.current, {duration: 1, y: 150, scrollTrigger: {
+        trigger: containerRef.current,
         start: "center center",
         end: "bottom 100px",
         scrub: 1
       }})
-  }, [theme, language])
+  })
 
 
   return (
     <StyledTwoSidesContainer ref={containerRef}>
-      <StyledTitle className="title" ref={titleRef}>
+      <StyledTitle>
         {language === "FR" ? "Bonjour," : "Hello,"}
       </StyledTitle>
       <StyledSubtitle className=".subtitle">

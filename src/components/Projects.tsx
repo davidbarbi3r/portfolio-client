@@ -1,10 +1,14 @@
 import { styled } from "@stitches/react";
 import { colorTheme } from "../styles/colorTheme";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext, LanguageContext } from "../hooks/Context";
 import { ProjectsArray } from "../data/Projects";
 import upForest from "../assets/upForest.jpg"
 import Project from "./Project"
+import gsap from "gsap"
+import {ScrollTrigger} from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface IProps {
   projectRef: any
@@ -21,6 +25,8 @@ interface IProps {
         setProjectSelected(ProjectsArray.filter((item) => item.id === projectId)[0])
         setDisplayProject((prev) => !prev)
     }
+    const unfeaturedRef = useRef(null)
+    const featuredRef = useRef(null)
 
     const StyledProject = styled("section", {
       backgroundColor: theme ? colorTheme.dark.green4 : colorTheme.light.green4,
@@ -122,6 +128,17 @@ interface IProps {
       }
     })
 
+    useEffect(() => {
+      const project = featuredRef.current
+
+      gsap.from(project, {opacity: 0, duration: 1, scrollTrigger: {
+        trigger: project,
+        start: "10% bottom",
+        end: "100px",
+        scrub: 1
+      } })
+    })
+
     const ProjectUnfeatured = ProjectsArray.filter((project) => !project.featured)
 
     const bestUnfeatured = ProjectUnfeatured.slice(0)
@@ -149,7 +166,7 @@ interface IProps {
   
     return (
       <StyledProject ref={projectRef}>
-        <StyledProjectContainer>
+        <StyledProjectContainer ref={featuredRef}>
           <StyledTitle>{language === 'EN' ? "Projects" : "Projets"}</StyledTitle>
           <FeaturedProject onClick={() => toggleProject(featured.id)}/>
           <StyledTinyCardsContainer>{ProjectHtml}</StyledTinyCardsContainer>
