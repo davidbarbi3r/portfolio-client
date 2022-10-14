@@ -1,16 +1,22 @@
 import { styled } from "@stitches/react";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ThemeContext, LanguageContext } from "../hooks/Context";
-import { CallToActionBtn } from "../modals/CallToActionBtn";
 import { colorTheme } from "../styles/colorTheme";
 import forest from "../assets/forest.jpg"
+import gsap from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger"
+
+
+
 
 export default function Highlight() {
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
+  const containerRef = useRef(null)
+  gsap.registerPlugin(ScrollTrigger)
 
   const StyledTwoSidesContainer = styled("div", {
-    position: "relative",
+    position: "relative", 
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -55,13 +61,22 @@ export default function Highlight() {
     },
   });
 
-  console.log(import.meta.env.VITE_FIRE_SENDERID)
+  useEffect(() => {
+    gsap.to(containerRef.current, {duration: 1, y: 150, scrollTrigger: {
+        trigger: containerRef.current,
+        start: "center center",
+        end: "bottom 100px",
+        scrub: 1
+      }})
+  })
+
+
   return (
-    <StyledTwoSidesContainer>
+    <StyledTwoSidesContainer ref={containerRef}>
       <StyledTitle>
         {language === "FR" ? "Bonjour," : "Hello,"}
       </StyledTitle>
-      <StyledSubtitle>
+      <StyledSubtitle className=".subtitle">
         <strong>
           {language === "EN"
             ? "I'm a passionate web developer"
