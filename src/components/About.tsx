@@ -109,7 +109,7 @@ export default function About({aboutRef}: IProps) {
       start: "top bottom",
       end: "top center"
     }}) 
-    gsap.from(imageRef.current, {x: 800, scale: 0.5, duration: 1, scrollTrigger: {
+    gsap.from(imageRef.current, {opacity: 0, scale: 0.5, duration: 1, scrollTrigger: {
       trigger: imageRef.current,
       scrub: 1,
       start: "top bottom",
