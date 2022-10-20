@@ -79,14 +79,13 @@ export default function Highlight() {
       <StyledSubtitle className=".subtitle">
         <strong>
           {language === "EN"
-            ? "I'm a passionate web developer"
-            : "Je suis un developpeur web passionné"}
+            ? "I'm a passionate developer"
+            : "Je suis un developpeur passionné"}
         </strong>{" "}
         {language === "EN"
-          ? "based in Ajaccio, France. I'm availaible for any project / job in web developement (front or backend) near Ajaccio or remote."
-          : "basé à Ajaccio, je suis disponible pour tout projet ou travail en tant que developpeur web près d'Ajaccio ou en télétravail"}
+          ? "based in Ajaccio, France. I'm availaible for any project / job in software developement (front or backend) near Ajaccio or remote."
+          : "basé à Ajaccio, je suis disponible pour tout projet ou travail en tant que developpeur près d'Ajaccio ou en télétravail"}
       </StyledSubtitle>
-      {/* <CallToActionBtn text="Contact" /> */}
     </StyledTwoSidesContainer>
   );
 }

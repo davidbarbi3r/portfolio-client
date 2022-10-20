@@ -124,11 +124,23 @@ export default function About({aboutRef}: IProps) {
           <StyledTitle ref={aboutTitleRef}>
             {language === "EN" ? "About me" : "A propos"}
           </StyledTitle>
-          <p ref={aboutLeftRef}>
+          <div ref={aboutLeftRef}>
+            <p>
+              {language === "EN"
+                ? "Tech and finance passionate, after having worked for 9 years in financial audit, I decided to evolve and add software development to my skills."
+                : "Passionné de tech et de finance depuis toujours et après avoir travaillé 9 ans en tant qu'auditeur financier, j'ai décidé d'évoluer en ajoutant le développement à mes compétences."}
+            </p>
+            <p>
             {language === "EN"
-              ? "Tech passionate, I decided to retrain into web developpement & blockchain fall 2021. I've worked for 9 years in Financial Audit & Accountancy. Since then I'm 100% dedicated to learning & working on projects to be at my best. "
-              : "Passionné de tech, j'ai décidé de me reconvertir dans le développement web & blockchain fin 2021 après avoir travaillé 9 ans dans le domaine de l'Audit / Comptabilité. Depuis j'ai à coeur d'apprendre tous les jours afin de donner le meilleur de moi même pour développer toutes sortes de projets."}
-          </p>
+                ? "I am convinced value creation frequently takes place at the jointure between two areas. That's why I'm curious and always trying to improve myself."
+                : "Je suis convaincu que la création de valeur s'effectue très souvent à l'intersection entre deux domaines. C'est pourquoi je suis curieux, j'essaie toujours de m'améliorer."}
+            </p>
+            <p>
+            {language === "EN"
+                ? "I'm using my knowledge of processes & needs to develop useful solutions for end users. My goal is to evolve into blockchain development which is a powerful and fast-growing technology."
+                : "Fort de ma connaissance des processus et des besoins des entreprises dans le domaine financier, j'utilise mes compétences en développement pour apporter des solutions fiables aux utilisateurs finaux. Mon but est de me spécialiser dans la blockchain qui est une technologie novatrice en pleine évolution qui à toute sa place dans la fiabilisation et le suivi des process."}
+            </p>
+          </div>
         </LeftContainer>
         <RightContainer ref={imageRef}>
           <img src={portrait} alt="my portrait"></img>

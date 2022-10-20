@@ -22,11 +22,12 @@ function Stack() {
   const tool2 = useRef(null)
   const tool3 = useRef(null)
   const tool4 = useRef(null)
+  const tool5 = useRef(null)
 
   useEffect(() => {
     const langs = [lang1.current, lang2.current, lang3.current]
     const frameworks = [framework1.current, framework2.current]
-    const tools = [tool1.current, tool2.current, tool3.current, tool4.current]
+    const tools = [tool1.current, tool2.current, tool3.current, tool4.current, tool5.current]
     const stack = [...langs, ...frameworks, ...tools]
 
     gsap.fromTo(stack, {opacity: 0, x: 25, duration: 1}, {opacity: 1, x: 0, stagger: 0.25, scrollTrigger: {
@@ -157,10 +158,11 @@ function Stack() {
           </StackSection>
           <StackSection>
             <h2>{language === "EN" ? "Tools " : "Outils "}</h2>
-            <i ref={tool1} className="devicon-git-plain"></i>
-            <i ref={tool2} className="devicon-mongodb-plain-wordmark"></i>
-            <i ref={tool3} className="devicon-docker-plain-wordmark"></i>
-            <i ref={tool4} className="devicon-vscode-plain"></i>
+            <i ref={tool1} className="devicon-linux-plain"></i>
+            <i ref={tool2} className="devicon-git-plain"></i>
+            <i ref={tool3} className="devicon-mongodb-plain-wordmark"></i>
+            <i ref={tool4} className="devicon-docker-plain-wordmark"></i>
+            <i ref={tool5} className="devicon-vscode-plain"></i>
           </StackSection>
         </StackRightSection>
       </MainContainer>
