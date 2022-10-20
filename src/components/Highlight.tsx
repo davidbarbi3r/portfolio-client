@@ -27,6 +27,7 @@ export default function Highlight() {
     backgroundColor: theme ? colorTheme.dark.green4 : colorTheme.light.green4,
     backgroundImage: `url(${forest})`,
     backgroundPositionY : theme ? "90%" : "20%",
+    backgroundPositionX : "50%",
     backgroundBlendMode: "luminosity",
     maxHeight: "100%",
     height: "100%",
