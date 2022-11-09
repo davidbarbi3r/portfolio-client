@@ -5,7 +5,7 @@ import { ThemeContext, LanguageContext } from "../hooks/Context";
 import { useContext, useEffect, useRef, useState } from "react";
 import { colorTheme } from "../styles/colorTheme";
 import { useNavigate } from "react-router-dom";
-import gsap from "gsap"
+import gsap from "gsap";
 
 interface IProps {
   scroll: (ref: any) => void;
@@ -26,25 +26,33 @@ export default function Header({
   const { language } = useContext(LanguageContext);
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
-  const linkRef1 = useRef(null)
-  const linkRef2 = useRef(null)
-  const linkRef3 = useRef(null)
-  const linkRef4 = useRef(null)
+  const linkRef1 = useRef(null);
+  const linkRef2 = useRef(null);
+  const linkRef3 = useRef(null);
+  const linkRef4 = useRef(null);
+  const linkRef5 = useRef(null);
 
   function toggleMenu() {
     setMenu((prev) => !prev);
   }
 
   useEffect(() => {
-
     const links = [
       linkRef1.current,
       linkRef2.current,
       linkRef3.current,
-      linkRef4.current
-    ]
-    menu ? 
-    gsap.from(links, {opacity: 0, x: -window.innerWidth, duration: 1, stagger: 0.25}) : ""}, [menu])
+      linkRef4.current,
+      linkRef5.current,
+    ];
+    menu
+      ? gsap.from(links, {
+          opacity: 0,
+          x: -window.innerWidth,
+          duration: 1,
+          stagger: 0.25,
+        })
+      : "";
+  }, [menu]);
 
   const HeaderMenu = styled("nav", {
     position: "fixed",
@@ -200,19 +208,31 @@ export default function Header({
       </StyledHeader>
       {menu ? (
         <HeaderMenu>
-          <li ref={linkRef1} onClick={() => homeRef ? scroll(homeRef): navigate("/")}>
+          <li
+            ref={linkRef1}
+            onClick={() => (homeRef ? scroll(homeRef) : navigate("/"))}
+          >
             <a>{language === "FR" ? "Accueil" : "Home"}</a>
           </li>
-          <li ref={linkRef2} onClick={() => aboutRef ? scroll(aboutRef) : navigate("/")}>
+          <li
+            ref={linkRef2}
+            onClick={() => (aboutRef ? scroll(aboutRef) : navigate("/"))}
+          >
             <a>{language === "FR" ? "A propos" : "About"}</a>
           </li>
-          <li ref={linkRef3} onClick={() => projectRef ? scroll(projectRef) : navigate("/")}>
+          <li
+            ref={linkRef3}
+            onClick={() => (projectRef ? scroll(projectRef) : navigate("/"))}
+          >
             <a>{language === "FR" ? "Projets" : "Projects"}</a>
           </li>
-          <li ref={linkRef4} onClick={() => contactRef ? scroll(contactRef) : navigate("/")}>
+          <li
+            ref={linkRef4}
+            onClick={() => (contactRef ? scroll(contactRef) : navigate("/"))}
+          >
             <a>Contact</a>
           </li>
-          <li>
+          <li ref={linkRef5}>
             <a onClick={() => navigate("/blog")}>Blog</a>
           </li>
         </HeaderMenu>
